@@ -1,0 +1,958 @@
+/* styles.css */
+:root{
+  --bg:#0b0f17;
+  --card:#121a27;
+  --muted:#7f8aa3;
+  --text:#e8edf7;
+  --border: rgba(255,255,255,.08);
+  --primary:#6ee7ff;
+  --primary2:#a78bfa;
+  --danger:#ff6b6b;
+  --ok:#4ade80;
+  --shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+:root[data-theme="light"]{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --muted:#51607a;
+  --text:#0b1220;
+  --border: rgba(10,20,40,.12);
+  --shadow: 0 12px 28px rgba(10,20,40,.12);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: radial-gradient(1200px 700px at 10% 0%, rgba(110,231,255,.16), transparent 45%),
+              radial-gradient(900px 600px at 90% 10%, rgba(167,139,250,.16), transparent 40%),
+              var(--bg);
+  color:var(--text);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:5;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  border-bottom:1px solid var(--border);
+  padding:12px 16px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{display:flex; gap:12px; align-items:center;}
+.logo{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color:#071018;font-weight:900;
+  box-shadow: var(--shadow);
+}
+.title{font-weight:800; letter-spacing:.2px}
+.subtitle{color:var(--muted); font-size:12px; margin-top:2px}
+
+.stats{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
+.stat{
+  display:flex; flex-direction:column; gap:2px;
+  padding:8px 10px; border:1px solid var(--border);
+  border-radius:12px; background: color-mix(in srgb, var(--card) 70%, transparent);
+}
+.stat .k{font-size:11px; color:var(--muted)}
+.stat .v{font-size:14px; font-weight:800}
+
+.iconBtn{
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  color:var(--text);
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+.iconBtn:hover{transform: translateY(-1px);}
+
+.container{max-width: 980px; margin: 0 auto; padding: 18px 16px 40px;}
+.view{display:block}
+.hidden{display:none !important}
+
+.card{
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  box-shadow: var(--shadow);
+}
+
+.hero h1{margin:0 0 8px; font-size:28px}
+.hero p{margin:0 0 14px; color:var(--muted); line-height:1.45}
+.hint{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+  border:1px dashed var(--border);
+  color: var(--muted);
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top:14px;
+}
+@media (max-width:820px){
+  .grid2{grid-template-columns:1fr}
+  .stats{display:none}
+}
+
+.btnRow{display:flex; gap:10px; flex-wrap:wrap}
+
+.btn{
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  color:var(--text);
+  border-radius:14px;
+  padding:10px 14px;
+  cursor:pointer;
+  font-weight:700;
+}
+.btn:hover{transform: translateY(-1px);}
+.btn:disabled{opacity:.55; cursor:not-allowed; transform:none}
+
+.btn.primary{
+  border:none;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color:#071018;
+}
+.btn.ghost{
+  background: transparent;
+}
+.btn.danger{
+  border:1px solid color-mix(in srgb, var(--danger) 50%, var(--border));
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
+.muted{color:var(--muted)}
+.rowBetween{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
+
+.chips{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0}
+.chip{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+
+.filters{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:12px;
+  margin-top:10px;
+}
+@media (max-width:720px){
+  .filters{grid-template-columns:1fr}
+}
+label{display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:12px}
+select{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: transparent;
+  color:var(--text);
+}
+option{color:#000}
+
+.quizCard{margin-top:6px}
+.qTitle{font-size:14px; font-weight:900}
+.qMeta{font-size:12px; color:var(--muted); margin-top:2px}
+.qPrompt{margin-top:14px; font-size:16px; line-height:1.45}
+
+.codeWrap{margin-top:12px}
+.codeLabel{font-size:12px; color:var(--muted); margin-bottom:6px}
+.code{
+  margin:0;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, #000 22%, var(--card));
+  overflow:auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:13px;
+  line-height:1.35;
+}
+
+.options{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+@media (max-width:720px){
+  .options{grid-template-columns:1fr}
+}
+
+.option{
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  border-radius:16px;
+  padding:12px;
+  text-align:left;
+  cursor:pointer;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  transition: transform .08s ease;
+}
+.option:hover{transform: translateY(-1px);}
+.option.selected{outline:2px solid color-mix(in srgb, var(--primary) 60%, transparent);}
+.badge{
+  display:inline-grid; place-items:center;
+  min-width:28px; height:28px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-weight:900;
+}
+.optText{line-height:1.35}
+
+.option.correct{
+  border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+  background: color-mix(in srgb, var(--ok) 14%, transparent);
+}
+.option.wrong{
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--border));
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
+.actions{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.explanation{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+
+.toast{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  box-shadow: var(--shadow);
+  transition: all .18s ease;
+  pointer-events:none;
+  font-weight:800;
+}
+.toast.show{
+  opacity:1;
+  transform: translateX(-50%) translateY(0px);
+}
+
+/* LEVELS (Trilha tipo Duolingo) */
+.levelsGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+@media (max-width:720px){
+  .levelsGrid{grid-template-columns:1fr}
+}
+
+.levelCard{
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  border-radius:18px;
+  padding:14px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+
+.levelInfo{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.levelName{
+  font-weight:900;
+  font-size:16px;
+}
+
+.levelMeta{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+
+.pill{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+}
+
+.pill.ok{
+  border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+  background: color-mix(in srgb, var(--ok) 12%, transparent);
+  color: color-mix(in srgb, var(--ok) 85%, var(--text));
+}
+
+.pill.locked{
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+
+.levelActions{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:flex-end;
+}
+
+/* ===========================
+   MOBILE RESPONSIVE PATCH
+   Cole no final do style.css
+   =========================== */
+
+* { box-sizing: border-box; }
+img, svg { max-width: 100%; height: auto; }
+
+.container{
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Topbar: empilha marca + stats */
+@media (max-width: 768px){
+  .topbar{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .brand{
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .stats{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .stat{
+    min-width: 0;
+    padding: 8px;
+  }
+
+  .stat .k{ font-size: 11px; }
+  .stat .v{ font-size: 14px; }
+
+  #themeToggle{
+    justify-self: end;
+  }
+}
+
+/* Em telas bem pequenas: 2 colunas de stats */
+@media (max-width: 420px){
+  .stats{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Home: botões em coluna */
+@media (max-width: 768px){
+  .btnRow{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btnRow .btn{
+    width: 100%;
+  }
+}
+
+/* Grid da home vira 1 coluna */
+@media (max-width: 900px){
+  .grid2{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Quiz: opções e código */
+@media (max-width: 768px){
+  .quizCard{
+    padding: 14px;
+  }
+
+  .qTitle{
+    font-size: 16px;
+  }
+
+  .qMeta{
+    font-size: 12px;
+  }
+
+  .options{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option{
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+  }
+
+  .optText{
+    line-height: 1.35;
+  }
+
+  .actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .actions .btn{
+    width: 100%;
+  }
+
+  /* Código não estoura a tela */
+  .code{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: pre;
+    max-width: 100%;
+  }
+}
+
+/* Levels: 1 coluna no celular */
+@media (max-width: 768px){
+  .levelsGrid{
+    grid-template-columns: 1fr !important;
+  }
+
+  .levelCard{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .levelActions{
+    align-items: stretch;
+  }
+
+  .levelActions .btn{
+    width: 100%;
+  }
+}
+
+/* ===========================
+   MOBILE: APP-LIKE UX
+   Topbar fixa + Botão Próxima grande
+   Cole no FINAL do style.css
+   =========================== */
+
+@media (max-width: 768px) {
+
+  /* 1) Topbar fixa */
+  .topbar{
+    position: sticky;   /* fica fixo ao rolar */
+    top: 0;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    /* se seu tema tiver fundo transparente, isso ajuda */
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* dá espaço para o conteúdo não ficar escondido atrás do topo */
+  main.container{
+    padding-top: 12px;
+  }
+
+  /* 2) Barra de ações fixa embaixo (opcional, melhora muito no celular) */
+  .actions{
+    position: sticky;
+    bottom: 0;
+    z-index: 9998;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    border-top: 1px solid var(--border);
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 14px;
+  }
+
+  /* 3) Botão Próxima grande e destacado */
+  #btnNext{
+    grid-column: 1 / -1;      /* ocupa a linha inteira */
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 14px;
+    transform: translateZ(0);
+  }
+
+  /* Quando habilitado, deixa com cara de "CTA" */
+  #btnNext:enabled{
+    box-shadow: 0 10px 24px rgba(0,0,0,.22);
+  }
+
+  /* Botões secundários um pouco menores (pra destacar o Próxima) */
+  #btnHint, #btnSkip, #btnSubmit{
+    padding: 12px 12px;
+    font-size: 14px;
+  }
+
+  /* Evita "pulo" quando aparece scrollbar */
+  .quizCard{
+    overflow: hidden;
+  }
+}
+
+/* ===========================
+   PLT MOBILE-FIRST UPGRADE
+   Cole no FINAL do style.css
+   =========================== */
+
+@media (max-width: 768px){
+
+  /* Layout geral */
+  body{
+    font-size: 14px;
+  }
+
+  .container{
+    width: 100%;
+    padding: 14px;
+  }
+
+  /* Topbar mais "app" e fixa */
+  .topbar{
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    padding: 10px 12px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+
+  .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title{
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  .subtitle{
+    font-size: 12px;
+  }
+
+  /* Stats em grid compacto */
+  .stats{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .stat{
+    min-width: 0;
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+  .stat .k{ font-size: 11px; }
+  .stat .v{ font-size: 14px; }
+
+  #themeToggle{
+    justify-self: end;
+  }
+
+  @media (max-width: 420px){
+    .stats{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Hero menor e com melhor leitura */
+  .hero h1{
+    font-size: 22px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .hero p{
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Botões da home viram cards grandes */
+  .btnRow{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .btnRow .btn{
+    width: 100%;
+    padding: 14px 14px;
+    border-radius: 14px;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  /* Dá uma cara de "card botão" */
+  .btnRow .btn::after{
+    content: "›";
+    float: right;
+    opacity: .65;
+    font-weight: 900;
+  }
+
+  /* Cards em 1 coluna (remove lado a lado) */
+  .grid2{
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .card{
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  h2{
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  /* Chips quebram linha e ficam confortáveis */
+  .chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* QUIZ: opções bem clicáveis */
+  .quizCard{
+    padding: 14px;
+  }
+
+  .qTitle{ font-size: 15px; }
+  .qMeta{ font-size: 12px; }
+
+  .options{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option{
+    width: 100%;
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .badge{
+    min-width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+  }
+
+  .optText{
+    line-height: 1.35;
+    font-size: 14px;
+  }
+
+  /* Código não estoura a tela */
+  .code{
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: pre;
+    border-radius: 14px;
+  }
+
+  /* Ações: estilo app, com Próxima gigante */
+  .actions{
+    position: sticky;
+    bottom: 0;
+    z-index: 9998;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    border-top: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    margin-top: 12px;
+  }
+
+  #btnNext{
+    grid-column: 1 / -1;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 16px;
+  }
+
+  /* Levels em 1 coluna */
+  .levelsGrid{
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .levelCard{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .levelActions .btn{
+    width: 100%;
+  }
+}
+
+/* ===========================
+   FIX: STATS + THEME TOGGLE NO CELULAR
+   Cole no FINAL do style.css
+   =========================== */
+
+@media (max-width: 768px){
+
+  /* garante que o header/topbar não “corte” os stats */
+  .topbar{
+    overflow: visible !important;
+  }
+
+  /* força os stats aparecerem (caso algum CSS tenha escondido) */
+  .stats{
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  /* em telas bem pequenas, 2 colunas */
+  @media (max-width: 420px){
+    .stats{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* cards de stat visíveis e compactos */
+  .stat{
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 10px;
+    min-width: 0;
+  }
+
+  .stat .k{ font-size: 11px; opacity: .85; }
+  .stat .v{ font-size: 14px; font-weight: 800; }
+
+  /* botão do tema sempre visível e “preso” no canto */
+  #themeToggle{
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    grid-column: 3;          /* fica na 3ª coluna */
+    justify-self: end;
+  }
+
+  @media (max-width: 420px){
+    #themeToggle{
+      grid-column: 2;        /* fica na 2ª coluna em telas menores */
+    }
+  }
+}
+
+.learnGrid{
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+.learnMenu{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.learnItem{
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+}
+.learnItem.active{
+  border-color: var(--accent);
+}
+@media (max-width: 900px){
+  .learnGrid{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   CURSO / LEARN (UX MOBILE)
+   ========================= */
+
+.learnGrid{
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.learnMenu{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.learnItem{
+  width: 100%;
+  text-align: left;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .08s ease, border-color .12s ease;
+}
+
+.learnItem:hover{
+  transform: translateY(-1px);
+}
+
+.learnItem.active{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.04) inset;
+}
+
+.learnContent{
+  line-height: 1.55;
+}
+
+.learnContent h3{
+  margin-top: 0;
+}
+
+.learnContent pre.code{
+  overflow: auto;
+  max-width: 100%;
+}
+
+/* Navegação do curso (Anterior / Treinar / Próximo) */
+.learnNav{
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap; /* no celular quebra linha sem estourar */
+}
+
+.learnNav .btn{
+  flex: 1;
+  min-width: 150px;
+}
+
+/* MOBILE: menu vira lista horizontal com scroll */
+@media (max-width: 900px){
+
+  .learnGrid{
+    grid-template-columns: 1fr;
+  }
+
+  .learnMenu{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .learnMenu::-webkit-scrollbar{
+    display: none;
+  }
+
+  .learnItem{
+    flex: 0 0 auto;        /* impede que os botões encolham */
+    min-width: 240px;      /* largura mínima */
+    padding: 12px 14px;
+    font-size: 14px;
+    white-space: normal;   /* permite quebra de linha */
+    line-height: 1.2;
+  }
+
+}
+
+  .learnNav .btn{
+    min-width: 0;
+    flex: 1 1 48%;
+  }
+
+  /* deixa o "Treinar" mais destacável no mobile */
+  #btnLearnPractice{
+    flex: 1 1 100%;
+  }
+
+
+/* MOBILE PEQUENO: botões 100% largura */
+@media (max-width: 420px){
+  .learnNav .btn{
+    flex: 1 1 100%;
+  }
+}

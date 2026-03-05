@@ -1,0 +1,221 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Programming Logic Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0b0f17">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">PLT</div>
+      <div>
+        <div class="title">Programming Logic Trainer</div>
+        <div class="subtitle">Treine lógica de programação com questões A–E</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="k">Respondidas</span><span class="v" id="statAnswered">0</span></div>
+      <div class="stat"><span class="k">Acertos</span><span class="v" id="statCorrect">0</span></div>
+      <div class="stat"><span class="k">Streak</span><span class="v" id="statStreak">0</span></div>
+      <div class="stat"><span class="k">Melhor</span><span class="v" id="statBest">0</span></div>
+      <div class="stat"><span class="k">XP</span><span class="v" id="statXP">0</span></div>
+      <div class="stat"><span class="k">Nível</span><span class="v" id="statLevel">1</span></div>
+      <button class="iconBtn" id="themeToggle" title="Alternar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section data-view="home" class="view">
+      <div class="card hero">
+        <h1>Aprenda lógica na prática</h1>
+        <p>
+          Questões de múltipla escolha (A–E), muitas com pseudocódigo estilo Portugol/Visualg.
+          Responda, veja a explicação e evolua no seu ritmo.
+        </p>
+        <div class="btnRow">
+          <button class="btn primary" id="btnHomeQuiz">Começar Quiz (10)</button>
+          <button class="btn" id="btnHomeLearn">Aprender o que é Lógica de Programação?</button>
+          <button class="btn" id="btnHomePractice">Treinar por Tema</button>
+          <button class="btn" id="btnHomeDaily">Desafio do Dia</button>
+          <button class="btn" id="btnHomeReview">Revisar Erros</button>
+          <button class="btn" id="btnHomeLevels">Níveis (Trilha)</button>
+          
+        </div>
+        <div class="hint">
+          Dica: use o <b>Desafio do Dia</b> pra manter sequência e virar hábito.
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h2>Como funciona</h2>
+          <ul>
+            <li>Escolha uma alternativa (A–E) e envie.</li>
+            <li>Veja o destaque de certo/errado + explicação.</li>
+            <li>Ganhe XP, suba de nível e acompanhe sua evolução.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>O que você vai treinar</h2>
+          <div class="chips">
+            <span class="chip">Variáveis</span>
+            <span class="chip">Operadores</span>
+            <span class="chip">If/Else</span>
+            <span class="chip">Loops</span>
+            <span class="chip">Funções</span>
+            <span class="chip">Vetores</span>
+            <span class="chip">Debug</span>
+          </div>
+          <p class="muted">Banco offline com <b>100 questões</b> incluídas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEVELS -->
+<section data-view="levels" class="view hidden">
+  <div class="card">
+    <div class="rowBetween">
+      <h2>Trilha de Níveis</h2>
+      <button class="btn ghost" id="btnGoHomeLevels">← Home</button>
+    </div>
+
+    <p class="muted">
+      Complete cada módulo para desbloquear o próximo. Meta padrão: <b>7 acertos em 10</b>.
+    </p>
+
+    <div id="levelsGrid" class="levelsGrid"></div>
+  </div>
+</section>
+
+    <!-- PRACTICE FILTERS -->
+    <section data-view="practice" class="view hidden">
+      <div class="card">
+        <div class="rowBetween">
+          <h2>Treinar por Tema</h2>
+          <button class="btn ghost" id="btnGoHome1">← Voltar</button>
+        </div>
+        <div class="filters">
+          <label>
+            Tema
+            <select id="filterTopic"></select>
+          </label>
+          <label>
+            Tipo
+            <select id="filterType"></select>
+          </label>
+          <label>
+            Dificuldade
+            <select id="filterDifficulty"></select>
+          </label>
+        </div>
+        <div class="btnRow">
+          <button class="btn primary" id="btnStartPractice">Iniciar Prática</button>
+        </div>
+        <p class="muted">
+          A prática cria uma sessão com até 15 questões baseadas nos filtros.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="rowBetween">
+          <h2>Revisão de Erros</h2>
+          <div class="btnRow">
+            <button class="btn" id="btnStartReview">Começar Revisão</button>
+            <button class="btn danger" id="btnClearMistakes">Limpar Erros</button>
+          </div>
+        </div>
+        <p class="muted">As questões que você erra ficam salvas aqui (no seu navegador).</p>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section data-view="quiz" class="view hidden">
+      <div class="card quizCard">
+        <div class="rowBetween">
+          <div>
+            <div class="qTitle" id="qTitle">Questão</div>
+            <div class="qMeta" id="qMeta"></div>
+          </div>
+          <button class="btn ghost" id="btnGoHome2">← Home</button>
+        </div>
+
+        <div class="qPrompt" id="qPrompt"></div>
+
+        <div class="codeWrap hidden">
+          <div class="codeLabel">Código</div>
+          <pre class="code" id="qCode"></pre>
+        </div>
+
+        <div class="options" id="options"></div>
+
+        <div class="actions">
+          <button class="btn" id="btnHint">Dica</button>
+          <button class="btn" id="btnSkip">Pular</button>
+          <button class="btn primary" id="btnSubmit">Enviar</button>
+          <button class="btn" id="btnNext" disabled>Próxima</button>
+        </div>
+
+        <div class="explanation hidden" id="qExplanation"></div>
+      </div>
+    </section>
+
+    <!-- LEARN / CURSO -->
+<section data-view="learn" class="view hidden">
+  <div class="card">
+    <div class="rowBetween">
+      <h2>Curso de Lógica de Programação</h2>
+      <button class="btn ghost" id="btnGoHomeLearn">← Home</button>
+    </div>
+
+    <p class="muted">
+      Aqui você aprende do zero até o avançado, com exemplos em pseudocódigo estilo Portugol/Visualg.
+      Use isso junto do Quiz para fixar.
+    </p>
+
+    <div class="learnGrid">
+      <div class="learnMenu" id="learnMenu"></div>
+      <div class="learnContent" id="learnContent"></div>
+      <div class="learnNav">
+  <button class="btn" id="btnLearnPrev">← Anterior</button>
+  <button class="btn" id="btnLearnPractice">Treinar este módulo</button>
+  <button class="btn primary" id="btnLearnNext">Próximo →</button>
+</div>
+    </div>
+  </div>
+</section>
+
+    <!-- FINISH -->
+    <section data-view="finish" class="view hidden">
+      <div class="card">
+        <h2 id="finishTitle">Sessão concluída!</h2>
+        <p id="finishText" class="muted"></p>
+        <div class="btnRow">
+          <button class="btn primary" onclick="location.reload()">Nova sessão</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js");
+    });
+  }
+</script>
+
+</body>
+</html>
